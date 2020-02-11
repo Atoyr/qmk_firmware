@@ -169,6 +169,29 @@ void iota_gfx_task_user(void) {
 }
 #endif//SSD1306OLED
 
+
+#ifdef RGBLIGHT_EFFECT_STATIC_GRADIENT
+uint32_t layer_state_set_keymap(uint32_t state) {
+  rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+  switch (biton32(state)) {
+    case _LOWER:
+      rgblight_sethsv_noeeprom_yellow();
+      break;
+    case _RAISE:
+      rgblight_sethsv_noeeprom_red();
+      break;
+    case _FUNC:
+      rgblight_sethsv_noeeprom_green();
+      break;
+    default: // for any other layers, or the default layer
+      rgblight_mode(RGBLIGHT_MODE_STATIC_GRADIENT + 3);
+      rgblight_sethsv_red();
+      break;
+  }
+  return state;
+}
+#endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
 #ifdef SSD1306OLED
