@@ -113,7 +113,7 @@ void matrix_init_user(void) {
 // When add source files to SRC in rules.mk, you can use functions.
 const char *read_layer_state(void);
 const char *read_logo(void);
-//void set_keylog(uint16_t keycode, keyrecord_t *record);
+void set_keylog(uint16_t keycode, keyrecord_t *record);
 //const char *read_keylog(void);
 //const char *read_keylogs(void);
 
@@ -220,7 +220,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       #ifdef RGBLIGHT_ENABLE
         if (record->event.pressed) {
           rgblight_mode(RGB_current_mode);
-          rgblight_step();
+          uint8_t shifted = get_mods() & (MOD_MASK_SHIFT);
+          if (shifted) {
+            rgblight_step_reverse();
+          }else {
+            rgblight_step();
+          }
           RGB_current_mode = rgblight_config.mode;
         }
       #endif
