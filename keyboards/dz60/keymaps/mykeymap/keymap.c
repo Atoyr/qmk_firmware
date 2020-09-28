@@ -1,5 +1,5 @@
 #include QMK_KEYBOARD_H
-#include "mykeymap.h"
+#include "config.h"
 
 enum layers {
   _JP,
