@@ -112,12 +112,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MY_USZH:
       if (record->event.pressed) {
         // Do something when pressed
-        register_code(KC_RALT);
-        register_code(KC_GRV);
+        // register_code(KC_RALT);
+        // register_code(KC_GRV);
       } else {
         // Do something else when release
-        unregister_code(KC_GRV);
-        unregister_code(KC_RALT);
+        // unregister_code(KC_GRV);
+        // unregister_code(KC_RALT);
       }
       return false; // Skip all further processing of this key
     default:
