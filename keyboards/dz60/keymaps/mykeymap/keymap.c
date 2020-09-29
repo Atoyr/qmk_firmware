@@ -72,10 +72,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
 
   [_FN] = LAYOUT_directional(
+   //,-----------------------------------------------------------------------------------------.
+   //| Esc |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 | Ins | Del |
        KC_ESC,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_INS,  KC_DEL,     \
       _______, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______, _______, _______,              \
-      _______, BL_TOGG, BL_STEP,  BL_INC,  BL_DEC, _______, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______,                                \
-      _______, KC_BTN1, KC_BTN3, KC_BTN2, _______, _______,TG(_ADJ), _______, _______, _______, _______, _______, _______, KC_MS_U, _______,     \
+      _______, BL_TOGG, BL_STEP,  BL_INC,  BL_DEC, _______, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,                       \
+      _______         , KC_BTN1, KC_BTN3, KC_BTN2, _______,TG(_ADJ), _______, _______, _______, _______, _______, _______, KC_MS_U, _______,     \
       _______, _______, _______,           KC_ENT,           KC_ENT,           KC_ENT,          _______, _______, KC_MS_L, KC_MS_D, KC_MS_R      \
       ),
 
@@ -96,9 +98,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ADJ] = LAYOUT_directional(  \
        KC_ESC,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_INS,  KC_DEL,     \
       _______, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______, _______, _______,              \
-      _______, BL_TOGG, BL_STEP,  BL_INC,  BL_DEC, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,                                \
-      _______, DF(_JP), DF(_US), TG(_JP), TG(_US), _______, _______, _______, _______, _______, _______, _______, _______, KC_PGUP, _______,     \
-      _______, _______, _______,          _______,          _______,          _______,          _______, _______, KC_HOME, _______,  KC_END      \
+      _______, BL_TOGG, BL_STEP,  BL_INC,  BL_DEC, _______, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______, _______,                       \
+      _______         , DF(_JP), DF(_US), TG(_JP), TG(_US), _______, _______, _______, _______, _______, _______, _______, _______, _______,     \
+      _______, _______, _______,          _______,          _______,          _______,          _______, _______, _______, _______, _______      \
       )
 };
 
@@ -108,13 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case MY_USZH:
-      bool isJpLayerOn = IS_LAYER_ON(_JP);
-      bool isUsLayerOn = IS_LAYER_ON(_US);
       if (record->event.pressed) {
-        if (isJpLayerOn)  {
-          register_code(KC_ZKHK)
-        }else if (isUsLayerOn) {
-        }
         // Do something when pressed
       } else {
         // Do something else when release
