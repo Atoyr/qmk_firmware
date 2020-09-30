@@ -9,11 +9,11 @@ enum layers {
 
 enum keycodes {
   MY_USZH = SAFE_RANGE,// US Key (ANSI) Zenkaku-Hankaku
+  LT_FN_USZH,
   COLEMAK,
   DVORAK,
   FUNC,
-  FUNC2,
-  RGB,
+  FUNC2
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -113,13 +113,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  bool is_tapped = ((!record->event.pressed) && (keycode == prev_keycode));
   switch (keycode) {
     case MY_USZH:
       if (record->event.pressed) {
         // Do something when pressed
-        // register_code(KC_RALT);
-        // register_code(KC_GRV);
+        register_code(KC_RALT);
+        register_code(KC_GRV);
       } else {
+        // Do something else when release
+        unregister_code(KC_GRV);
+        unregister_code(KC_RALT);
+      }
+      return false; // Skip all further processing of this key
+    case LT_FN_USZH:
+      if (record->event.pressed) {
+        layer_on(_FN);
+      } else {
+        layer_off(_FN);
+        if (is_tapped) {
+          tap_code(MY_USZH);
+        }
         // Do something else when release
         // unregister_code(KC_GRV);
         // unregister_code(KC_RALT);
