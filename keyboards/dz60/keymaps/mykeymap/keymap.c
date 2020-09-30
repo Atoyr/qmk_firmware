@@ -7,8 +7,13 @@ enum layers {
   _ADJ
 };
 
-enum mykeycodes {
-  MY_USZH = SAFE_RANGE   // US Key (ANSI) Zenkaku-Hankaku
+enum keycodes {
+  MY_USZH = SAFE_RANGE,// US Key (ANSI) Zenkaku-Hankaku
+  COLEMAK,
+  DVORAK,
+  FUNC,
+  FUNC2,
+  RGB,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
