@@ -2,9 +2,10 @@
 
 enum layers {
   _JP,
+  _JP_SHIFT,
   _US,
   _FN,
-  _ADJ
+  _ADJ,
 };
 
 enum keycodes {
@@ -21,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------------------------------------------------------.
    * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |  \  | ` ~ |
    * |-----------------------------------------------------------------------------------------+
-   * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |    \   |
+   * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |   BS   |
    * |-----------------------------------------------------------------------------------------+
    * | Caps    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
    * |-----------------------------------------------------------------------------------------+
@@ -32,12 +33,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
 
   [_JP] = LAYOUT_directional(  \
-       KC_ESC,    KC_1,    JU_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,  KC_EQL, KC_NUBS,  KC_GRV,     \
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC, KC_RBRC, KC_BSPC,              \
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,  KC_ENT,                       \
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, _______,  RSFT_T(KC_SLSH),   KC_UP, LT(_FN,KC_GRV),
+       KC_ESC,    KC_1,    JU_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,S(KC_MINS), KC_INT1, S(KC_LBRC), \
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_RBRC, KC_NUHS, KC_BSPC,              \
+      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, S(KC_7),  KC_ENT,                       \
+      MO(_JP_SHIFT),    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, _______,LT(_JP_SHIFT,KC_SLSH),   KC_UP, LT(_FN,KC_GRV),
       MO(_FN), KC_LGUI, KC_LALT,           KC_SPC,           KC_SPC,           KC_SPC,          KC_RALT, _______, KC_LEFT, KC_DOWN, KC_RGHT      \
-      ), /* US
+      ), 
+
+  /* JP_SHIFT
+   * ,-----------------------------------------------------------------------------------------.
+   * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |  \  | ` ~ |
+   * |-----------------------------------------------------------------------------------------+
+   * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |   BS   |
+   * |-----------------------------------------------------------------------------------------+
+   * | Caps    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
+   * |-----------------------------------------------------------------------------------------+
+   * | Shift       |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |    /    |  U  | DEL |
+   * |-----------------------------------------------------------------------------------------+
+   * | Ctrl |  Cmd  |  Alt  |              Space                | RAlt | FN  |  L  |  D  |  R  |
+   * `-----------------------------------------------------------------------------------------'
+   */
+
+  [_JP_SHIFT] = LAYOUT_directional(  \
+       KC_ESC, S(KC_1), KC_LBRC, S(KC_3), S(KC_4), S(KC_5),  KC_EQL, S(KC_6), S(KC_QUOT), S(KC_8), S(KC_9), KC_MINS,  KC_EQL, S(KC_INT1), S(KC_EQL),     \
+       KC_TAB, S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), S(KC_RBRC),S(KC_NUHS), KC_BSPC,              \
+      KC_LCTL, S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_QUOT, S(KC_2),  KC_ENT,                       \
+      _______, S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), S(KC_N), S(KC_M),S(KC_COMM),S(KC_DOT), _______,S(KC_SLSH),   KC_UP, KC_INT5,         \
+      MO(_FN), KC_LGUI, KC_LALT,           KC_SPC,           KC_SPC,           KC_SPC,          KC_RALT, _______, KC_LEFT, KC_DOWN, KC_RGHT      \
+      ), 
+
+
+  /* US
    * ,-----------------------------------------------------------------------------------------.
    * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |  \  | ` ~ |
    * |-----------------------------------------------------------------------------------------+
@@ -113,10 +139,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   bool is_tapped = ((!record->event.pressed) && (keycode == prev_keycode));
   mem_keycode = keycode;
 
-  bool lshift = keyboard_report->mods & MOD_BIT(KC_LSFT);
-  bool rshift = keyboard_report->mods & MOD_BIT(KC_RSFT);
-  bool shift = lshift || rshift;
-
   switch (keycode) {
     case L_DF_JP:
       if (record->event.pressed) {
@@ -148,15 +170,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         unregister_code(KC_GRV);
         unregister_code(KC_RALT);
-      }
-      return false; // Skip all further processing of this key
-    case JU_2:
-      if (record->event.pressed) {
-        if (shift) {
-          register_code(KC_AT);
-        }
-      } else {
-          unregister_code(KC_AT);
       }
       return false; // Skip all further processing of this key
     default:
