@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        S(KC_TAB), S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), S(KC_RBRC),S(KC_NUHS), S(KC_BSPC),              \
       S(KC_LCTL), S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_QUOT, S(KC_2), S(KC_ENT),                       \
       _______, S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), S(KC_N), S(KC_M),S(KC_COMM),S(KC_DOT), _______,S(KC_SLSH),S(KC_UP),KC_INT5,         \
-      MO(_FN), S(KC_LGUI), S(KC_LALT),        S(KC_SPC),        S(KC_SPC),        S(KC_SPC),       S(KC_RALT), ______,S(KC_LEFT),S(KC_DOWN),S(KC_RGHT)      \
+      MO(_FN), S(KC_LGUI), S(KC_LALT),        S(KC_SPC),        S(KC_SPC),        S(KC_SPC),       S(KC_RALT), _______,S(KC_LEFT),S(KC_DOWN),S(KC_RGHT)      \
       ), 
 
 
