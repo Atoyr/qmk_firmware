@@ -12,77 +12,76 @@ enum keycodes {
   L_DF_JP = SAFE_RANGE,
   L_DF_US,
   LT_FN_USZH,
-  MY_USZH,// US Key (ANSI) Zenkaku-Hankaku
-  JU_2
+  MY_USZH// US Key (ANSI) Zenkaku-Hankaku
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* JP
    * ,-----------------------------------------------------------------------------------------.
-   * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  | ` ~ | BS  |
+   * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |  `  | BS  |
    * |-----------------------------------------------------------------------------------------+
-   * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |   \    |
+   * | Tab    |  q  |  w  |  e  |  r  |  t  |  y  |  u  |  i  |  o  |  p  |  [  |  ]  |   \    |
    * |-----------------------------------------------------------------------------------------+
-   * | Caps    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
+   * | Ctrl    |  a  |  s  |  d  |  f  |  g  |  h  |  j  |  k  |  l  |  ;  |  '  |    Enter    |
    * |-----------------------------------------------------------------------------------------+
-   * | Shift       |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  |  Shift  | DEL |
+   * | Shift       |  z  |  x  |  c  |  v  |  b  |  n  |  m  |  ,  |  .  |  /  |  Shift  | FN  |
    * |-----------------------------------------------------------------------------------------+
-   * | Ctrl |  Cmd  |  Alt  |              Space                | RAlt | FN  |  L  |  D  |  R  |
+   * |  FN  |  Cmd  |  Alt  |              Space                 | RAlt  | APP  | RCmd |  Z/H  |
    * `-----------------------------------------------------------------------------------------'
    */
 
   [_JP] = LAYOUT_directional(  \
-       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,S(KC_MINS), S(KC_LBRC), KC_BSPC, \
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_RBRC, KC_NUHS, KC_INT3,              \
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, S(KC_7),  KC_ENT,                       \
-      MO(_JP_SHIFT),    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_SLSH,   MO(_JP_SHIFT), LT(_FN,KC_GRV),
-      MO(_FN), KC_LGUI, KC_LALT,           KC_SPC,           KC_SPC,           KC_SPC,          KC_RALT, MO(_FN), KC_GRV, S(KC_LBRC), S(KC_LBRC)      \
+       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,S(KC_MINS), S(KC_LBRC), KC_BSPC,  \
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_RBRC, KC_NUHS, KC_INT3,                \
+      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, S(KC_7),  KC_ENT,                         \
+      MO(_JP_SHIFT),    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_SLSH,   MO(_JP_SHIFT), MO(_FN),  \
+      MO(_FN), KC_LGUI, KC_LALT,           KC_SPC,           KC_SPC,           KC_SPC,          KC_RALT,  KC_APP,  KC_APP, KC_RGUI, KC_GRV         \
       ), 
 
   /* JP_SHIFT
    * ,-----------------------------------------------------------------------------------------.
-   * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |  \  | ` ~ |
+   * | Esc |  !  |  @  |  #  |  $  |  %  |  ^  |  &  |  *  |  (  |  )  |  _  |  +  |  ~   | BS |
    * |-----------------------------------------------------------------------------------------+
-   * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |   BS   |
+   * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |   |    |
    * |-----------------------------------------------------------------------------------------+
-   * | Caps    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
+   * | Ctrl    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  :  | \"  |    Enter    |
    * |-----------------------------------------------------------------------------------------+
-   * | Shift       |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |    /    |  U  | DEL |
+   * | _______     |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  | _______ | FN  |
    * |-----------------------------------------------------------------------------------------+
-   * | Ctrl |  Cmd  |  Alt  |              Space                | RAlt | FN  |  L  |  D  |  R  |
+   * |  FN  |  Cmd  |  Alt  |              Space                 | RAlt  | APP  | RCmd |  Z/H  |
    * `-----------------------------------------------------------------------------------------'
    */
 
   [_JP_SHIFT] = LAYOUT_directional(  \
-       S(KC_ESC), S(KC_1), KC_LBRC, S(KC_3), S(KC_4), S(KC_5),  KC_EQL, S(KC_6), S(KC_QUOT), S(KC_8), S(KC_9),S(KC_INT1),S(KC_SCLN), KC_BSPC, ,     \
-       S(KC_TAB), S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), S(KC_RBRC),S(KC_NUHS), S(KC_INT3),              \
-      S(KC_LCTL), S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_QUOT, S(KC_2), S(KC_ENT),                       \
-      _______, S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), S(KC_N), S(KC_M),S(KC_COMM),S(KC_DOT), S(KC_SLSH) ,S(KC_SLSH),_______ ,KC_INT5,         \
-      MO(_FN), S(KC_LGUI), S(KC_LALT),        S(KC_SPC),        S(KC_SPC),        S(KC_SPC),       S(KC_RALT), _______,S(KC_LEFT),S(KC_EQL) ,S(KC_EQL)      \
+       S(KC_ESC), S(KC_1), KC_LBRC, S(KC_3), S(KC_4), S(KC_5),  KC_EQL, S(KC_6), S(KC_QUOT), S(KC_8), S(KC_9),S(KC_INT1),S(KC_SCLN), S(KC_EQL), KC_BSPC,   \
+       S(KC_TAB), S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), S(KC_RBRC),S(KC_NUHS), S(KC_INT3),             \
+      S(KC_LCTL), S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_QUOT, S(KC_2), S(KC_ENT),                            \
+      _______, S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), S(KC_N), S(KC_M),S(KC_COMM),S(KC_DOT), S(KC_SLSH) ,S(KC_SLSH),_______ , MO(_FN),               \
+      MO(_FN), S(KC_LGUI), S(KC_LALT),        S(KC_SPC),        S(KC_SPC),        S(KC_SPC),       S(KC_RALT), S(KC_APP), S(KC_APP), S(KC_RGUI), S(KC_GRV) \
       ), 
 
 
   /* US
    * ,-----------------------------------------------------------------------------------------.
-   * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |  \  | ` ~ |
+   * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |  `  | BS  |
    * |-----------------------------------------------------------------------------------------+
-   * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |   BS   |
+   * | Tab    |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  |   \    |
    * |-----------------------------------------------------------------------------------------+
    * | Ctrl    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
    * |-----------------------------------------------------------------------------------------+
-   * | Shift       |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |Tap(/)Sft|  U  | FN  |
+   * | Shift       |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  |  Shift  | FN  |
    * |-----------------------------------------------------------------------------------------+
-   * | FN   |  Cmd  |  Alt  |              Space                 |     |     |  L  |  D  |  R  |
+   * | FN   |  Cmd  |  Alt  |              Space                 | RAlt  | APP  | RCmd |  Z/H  |
    * `-----------------------------------------------------------------------------------------'
    */
 
   [_US] = LAYOUT_directional(  \
-       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,  KC_EQL, KC_NUBS,  KC_GRV,     \
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC, KC_RBRC, KC_BSPC,              \
+       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,  KC_EQL,  KC_GRV,KC_BSPC       \
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC, KC_RBRC, KC_NUBS,              \
       KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,  KC_ENT,                       \
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, _______,  RSFT_T(KC_SLSH),   KC_UP, LT_FN_USZH,  \
-      KC_A   , KC_LGUI, KC_LALT,           KC_SPC,           KC_SPC,           KC_SPC,          KC_RALT, _______, KC_LEFT, KC_DOWN, KC_RGHT      \
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_SLSH, KC_RSFT, MO(FN),              \
+      MO(FN) , KC_LGUI, KC_LALT,           KC_SPC,           KC_SPC,           KC_SPC,          KC_RALT,  KC_APP,  KC_APP, KC_RGUI, MY_USZH      \
       ),
 
   /* FN Layer
