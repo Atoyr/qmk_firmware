@@ -1,4 +1,6 @@
 #include QMK_KEYBOARD_H
+#include "timer.h"
+#include "led.h"
 
 enum layers {
   _JP,
@@ -129,9 +131,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       )
 };
 
+// custom led 
+LED_TYPE led[RGBLED_NUM];
+uint8_t ledMode;
 
+void backlight_init_ports(void) {
 
+}
 
+void backlight_set(uint8_t level) {
+
+}
+
+void backlight_task(void) {
+
+}
+
+// custom keycode action
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint16_t mem_keycode;
   uint16_t prev_keycode = mem_keycode;
